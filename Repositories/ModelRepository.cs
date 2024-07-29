@@ -1,10 +1,10 @@
-﻿
+﻿using Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Entities;
+
 namespace Repositories
 {
     public class ModelRepository : IModelRepository
@@ -16,27 +16,44 @@ namespace Repositories
             _picturesStoreContext = picturesStoreContext;
         }
 
-        public async Task<Model> addModel(Model user)
+        public async Task<Model> addModel(Model model)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _picturesStoreContext.Models.Add(model);
+                await _picturesStoreContext.SaveChangesAsync();
+                return model;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error adding model: " + ex.Message);
+            }
         }
 
         public async Task<List<Model>> getModels()
         {
-            var foundModels = await _picturesStoreContext.Models.ToListAsync();
-            if (foundModels == null)
-                return null;
-            return foundModels;
+            try
+            {
+                var foundModels = await _picturesStoreContext.Models.ToListAsync();
+                return foundModels;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error getting models: " + ex.Message);
+            }
         }
 
         public async Task<Model> getModelById(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        public async Task<Model> updateModel(int id, Model ModelToUpdate)
-        {
-            throw new NotImplementedException();
+            try
+            {
+                var foundModel = await _picturesStoreContext.Models.FirstOrDefaultAsync(m => m.ModelId == id);
+                return foundModel;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error getting model by ID: " + ex.Message);
+            }
         }
     }
 }

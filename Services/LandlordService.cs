@@ -27,16 +27,11 @@ namespace Services
             return await _landlordRepository.GetLandlords();
         }
 
-        public async Task<Landlord> GetLandlordById(int id)
+        public async Task<Landlord> GetLandlordById(Landlord landlord)
         {
             // Implement the logic to get a landlord by ID using the repository
-            return await _landlordRepository.GetLandlordById(id);
+            return await _landlordRepository.GetLandlordById(landlord);
         }
 
-        public async Task<Landlord> UpdateLandlord(int id, Landlord landlordToUpdate)
-        {
-            // Implement the logic to update a landlord using the repository
-            return await _landlordRepository.UpdateLandlord(id, landlordToUpdate);
-        }
     }
 }

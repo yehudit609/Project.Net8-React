@@ -50,23 +50,5 @@ public class ModelController : ControllerBase
         return CreatedAtAction(nameof(Get), new { id = addedModel.ModelId }, addedModel);
     }
 
-    [HttpPut("{id}")]
-    public async Task<IActionResult> Put(int id, [FromBody] Model model)
-    {
-        if (id != model.ModelId)
-        {
-            return BadRequest();
-        }
-
-        var existingModel = await _modelService.GetModelById(id);
-
-        if (existingModel == null)
-        {
-            return NotFound();
-        }
-
-        await _modelService.UpdateModel(id, model);
-
-        return NoContent();
-    }
+  
 }

@@ -10,6 +10,5 @@ namespace Repositories
         Task<Company> addCompany(Company Company);
         Task<List<Company>> getCompanies();
         Task<Company> getCompanyById(int id);
-        Task<Company> updateCompany(int id, Company CompanyToUpdate);
     }
 }

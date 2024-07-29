@@ -9,6 +9,6 @@ namespace Services
         Task<Car> AddCar(Car car);
         Task<List<Car>> GetCars();
         Task<Car> GetCarById(int id);
-        Task<Car> UpdateCar(int id, Car carToUpdate);
+       
     }
 }

@@ -1,5 +1,4 @@
-﻿
-using Entities;
+﻿using Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -19,25 +18,41 @@ namespace Repositories
 
         public async Task<Landlord> AddLandlord(Landlord landlord)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await _picturesStoreContext.Landlords.AddAsync(landlord);
+                await _picturesStoreContext.SaveChangesAsync();
+                return landlord;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error adding landlord: " + ex.Message);
+            }
         }
 
         public async Task<List<Landlord>> GetLandlords()
         {
-            var foundLandlords = await _picturesStoreContext.Landlords.ToListAsync();
-            if (foundLandlords == null)
-                return null;
-            return foundLandlords;
+            try
+            {
+                var foundLandlords = await _picturesStoreContext.Landlords.ToListAsync();
+                return foundLandlords;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error getting landlords: " + ex.Message);
+            }
         }
 
-        public async Task<Landlord> GetLandlordById(int id)
+        public async Task<Landlord> GetLandlordById(Landlord landlord)
         {
-            throw new NotImplementedException();
-        }
-
-        public async Task<Landlord> UpdateLandlord(int id, Landlord landlordToUpdate)
-        {
-            throw new NotImplementedException();
+            try
+            {
+                return await _picturesStoreContext.Landlords.Where(e => e.Email == landlord.Email && e.LandlordTz == landlord.LandlordTz).FirstOrDefaultAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error getting landlord by ID: " + ex.Message);
+            }
         }
     }
 }

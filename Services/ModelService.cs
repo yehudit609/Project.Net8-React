@@ -33,10 +33,6 @@ namespace Services
             return await _modelRepository.getModelById(id);
         }
 
-        public async Task<Model> UpdateModel(int id, Model modelToUpdate)
-        {
-            // Implement the logic to update a model using the repository
-            return await _modelRepository.updateModel(id, modelToUpdate);
-        }
+        
     }
 }

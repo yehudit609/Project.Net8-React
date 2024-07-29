@@ -27,7 +27,6 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-//builder.Host.UseNLog();
 
 
 var app = builder.Build();
@@ -39,12 +38,11 @@ if (app.Environment.IsDevelopment())
 }
 
 // Configure the HTTP request pipeline.
-//app.UseErrorHandlingMiddleware();
+
 app.UseHttpsRedirection();  
 app.UseStaticFiles();
 app.UseAuthorization();
 app.MapControllers();
-//app.UseRatingMiddleware();
 app.Run();
 
 

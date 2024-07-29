@@ -9,6 +9,5 @@ namespace Repositories
         Task<Model> addModel(Model Model);
         Task<List<Model>> getModels();
         Task<Model> getModelById(int id);
-        Task<Model> updateModel(int id, Model ModelToUpdate);
     }
 }

@@ -8,7 +8,6 @@ namespace Repositories
     {
         Task<Landlord> AddLandlord(Landlord landlord);
         Task<List<Landlord>> GetLandlords();
-        Task<Landlord> GetLandlordById(int id);
-        Task<Landlord> UpdateLandlord(int id, Landlord landlordToUpdate);
+        Task<Landlord> GetLandlordById(Landlord landlord);
     }
 }

@@ -9,6 +9,5 @@ namespace Services
         Task<Model> AddModel(Model model);
         Task<List<Model>> GetModels();
         Task<Model> GetModelById(int id);
-        Task<Model> UpdateModel(int id, Model modelToUpdate);
     }
 }

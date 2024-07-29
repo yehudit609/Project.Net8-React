@@ -33,10 +33,5 @@ namespace Services
             return await _rentingRepository.GetRentingById(id);
         }
 
-        public async Task<Renting> UpdateRenting(int id, Renting rentingToUpdate)
-        {
-            // Implement the logic to update a renting using the repository
-            return await _rentingRepository.UpdateRenting(id, rentingToUpdate);
-        }
     }
 }

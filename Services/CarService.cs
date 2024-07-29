@@ -33,10 +33,6 @@ namespace Services
             return await _carRepository.GetCarById(id);
         }
 
-        public async Task<Car> UpdateCar(int id, Car carToUpdate)
-        {
-            // Implement the logic to update a car using the repository
-            return await _carRepository.UpdateCar(id, carToUpdate);
-        }
+        
     }
 }

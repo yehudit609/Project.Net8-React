@@ -50,23 +50,5 @@ public class RentingController : ControllerBase
         return CreatedAtAction(nameof(Get), new { id = addedRenting.RentingId }, addedRenting);
     }
 
-    [HttpPut("{id}")]
-    public async Task<IActionResult> Put(int id, [FromBody] Renting renting)
-    {
-        if (id != renting.RentingId)
-        {
-            return BadRequest();
-        }
-
-        var existingRenting = await _rentingService.GetRentingById(id);
-
-        if (existingRenting == null)
-        {
-            return NotFound();
-        }
-
-        await _rentingService.UpdateRenting(id, renting);
-
-        return NoContent();
-    }
+  
 }

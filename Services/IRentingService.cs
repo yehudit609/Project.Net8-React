@@ -9,6 +9,5 @@ namespace Services
         Task<Renting> AddRenting(Renting renting);
         Task<List<Renting>> GetRentings();
         Task<Renting> GetRentingById(int id);
-        Task<Renting> UpdateRenting(int id, Renting rentingToUpdate);
     }
 }

@@ -50,23 +50,5 @@ public class CompanyController : ControllerBase
         return CreatedAtAction(nameof(Get), new { id = addedCompany.CompanyId }, addedCompany);
     }
 
-    [HttpPut("{id}")]
-    public async Task<IActionResult> Put(int id, [FromBody] Company company)
-    {
-        if (id != company.CompanyId)
-        {
-            return BadRequest();
-        }
-
-        var existingCompany = await _companyService.GetCompanyById(id);
-
-        if (existingCompany == null)
-        {
-            return NotFound();
-        }
-
-        await _companyService.UpdateCompany(id, company);
-
-        return NoContent();
-    }
+ 
 }

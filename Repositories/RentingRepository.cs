@@ -9,34 +9,51 @@ namespace Repositories
 {
     public class RentingRepository : IRentingRepository
     {
-        private CarRetalContext _picturesStoreContext;
+        private CarRetalContext _CarRetalContext;
 
-        public RentingRepository(CarRetalContext picturesStoreContext)
+        public RentingRepository(CarRetalContext carRetalContext)
         {
-            _picturesStoreContext = picturesStoreContext;
+            _CarRetalContext = carRetalContext;
         }
 
         public async Task<Renting> AddRenting(Renting renting)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await _CarRetalContext.Rentings.AddAsync(renting);
+                await _CarRetalContext.SaveChangesAsync();
+                return renting;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error adding renting: " + ex.Message);
+            }
         }
 
         public async Task<List<Renting>> GetRentings()
         {
-            var foundRentings = await _picturesStoreContext.Rentings.ToListAsync();
-            if (foundRentings == null)
-                return null;
-            return foundRentings;
+            try
+            {
+                var foundRentings = await _CarRetalContext.Rentings.ToListAsync();
+                return foundRentings;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error getting rentings: " + ex.Message);
+            }
         }
 
         public async Task<Renting> GetRentingById(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        public async Task<Renting> UpdateRenting(int id, Renting rentingToUpdate)
-        {
-            throw new NotImplementedException();
+            try
+            {
+                var foundRenting = await _CarRetalContext.Rentings.FirstOrDefaultAsync(r => r.RentingId == id);
+                return foundRenting;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error getting renting by ID: " + ex.Message);
+            }
         }
     }
 }

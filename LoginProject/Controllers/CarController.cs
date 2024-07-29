@@ -47,39 +47,4 @@ public class CarController : ControllerBase
 
         return CreatedAtAction(nameof(Get), new { id = addedCar.CarId }, addedCar);
     }
-
-    [HttpPut("{id}")]
-    public async Task<IActionResult> Put(int id, [FromBody] Car car)
-    {
-        if (id != car.CarId)
-        {
-            return BadRequest();
-        }
-
-        var existingCar = await _carService.GetCarById(id);
-
-        if (existingCar == null)
-        {
-            return NotFound();
-        }
-
-        await _carService.UpdateCar(id, car);
-
-        return NoContent();
-    }
-
-    //[HttpDelete("{id}")]
-    //public async Task<IActionResult> Delete(int id)
-    //{
-    //    var existingCar = await _carService.GetCarById(id);
-
-    //    if (existingCar == null)
-    //    {
-    //        return NotFound();
-    //    }
-
-    //    await _carService.DeleteCar(id);
-
-    //    return NoContent();
-    //}
 }

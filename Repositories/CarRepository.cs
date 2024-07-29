@@ -10,21 +10,30 @@ namespace Repositories
 {
     public class CarRepository : ICarRepository
     {
-        private CarRetalContext _picturesStoreContext;
+        private CarRetalContext _CarRetalContext;
 
-        public CarRepository(CarRetalContext picturesStoreContext)
+        public CarRepository(CarRetalContext CarRetalContext)
         {
-            _picturesStoreContext = picturesStoreContext;
+            _CarRetalContext = CarRetalContext;
         }
 
         public async Task<Car> AddCar(Car car)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await _CarRetalContext.Cars.AddAsync(car);
+                await _CarRetalContext.SaveChangesAsync();
+                return car;
+            }
+            catch (Exception err)
+            {
+                return null;
+            }
         }
 
         public async Task<List<Car>> GetCars()
         {
-            var foundCars = await _picturesStoreContext.Cars.ToListAsync();
+            var foundCars = await _CarRetalContext.Cars.ToListAsync();
             if (foundCars == null)
                 return null;
             return foundCars;
@@ -32,12 +41,13 @@ namespace Repositories
 
         public async Task<Car> GetCarById(int id)
         {
-            throw new NotImplementedException();
+            var foundUser = await _CarRetalContext.Cars.FindAsync(id);
+            if (foundUser == null)
+                return null;
+            await _CarRetalContext.SaveChangesAsync();
+            return foundUser;
         }
 
-        public async Task<Car> UpdateCar(int id, Car carToUpdate)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

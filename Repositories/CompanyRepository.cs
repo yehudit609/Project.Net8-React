@@ -1,5 +1,4 @@
-﻿
-using Entities;
+﻿using Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -17,27 +16,44 @@ namespace Repositories
             _picturesStoreContext = picturesStoreContext;
         }
 
-        public async Task<Company> addCompany(Company Company)
+        public async Task<Company> addCompany(Company company)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _picturesStoreContext.Companies.Add(company);
+                await _picturesStoreContext.SaveChangesAsync();
+                return company;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error adding company: " + ex.Message);
+            }
         }
 
         public async Task<List<Company>> getCompanies()
         {
-            var foundCompanies = await _picturesStoreContext.Companies.ToListAsync();
-            if (foundCompanies == null)
-                return null;
-            return foundCompanies;
+            try
+            {
+                var foundCompanies = await _picturesStoreContext.Companies.ToListAsync();
+                return foundCompanies;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error getting companies: " + ex.Message);
+            }
         }
 
         public async Task<Company> getCompanyById(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        public async Task<Company> updateCompany(int id, Company CompanyToUpdate)
-        {
-            throw new NotImplementedException();
+            try
+            {
+                var foundCompany = await _picturesStoreContext.Companies.FirstOrDefaultAsync(c => c.CompanyId == id);
+                return foundCompany;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error getting company by ID: " + ex.Message);
+            }
         }
     }
 }

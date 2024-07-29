@@ -32,11 +32,5 @@ namespace Services
             // Implement the logic to get a company by ID using the repository
             return await _companyRepository.getCompanyById(id);
         }
-
-        public async Task<Company> UpdateCompany(int id, Company companyToUpdate)
-        {
-            // Implement the logic to update a company using the repository
-            return await _companyRepository.updateCompany(id, companyToUpdate);
-        }
     }
 }

@@ -9,6 +9,5 @@ namespace Services
         Task<Company> AddCompany(Company company);
         Task<List<Company>> GetCompanies();
         Task<Company> GetCompanyById(int id);
-        Task<Company> UpdateCompany(int id, Company companyToUpdate);
     }
 }

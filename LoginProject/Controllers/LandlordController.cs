@@ -24,17 +24,18 @@ public class LandlordController : ControllerBase
         return Ok(landlords);
     }
 
-    [HttpGet("{id}")]
-    public async Task<IActionResult> Get(int id)
+    [HttpPost]
+    [Route("login")]
+    public async Task<IActionResult> Login([FromBody] Landlord landlord)
     {
-        var landlord = await _landlordService.GetLandlordById(id);
+        var landlord1 = await _landlordService.GetLandlordById(landlord);
 
-        if (landlord == null)
+        if (landlord1 == null)
         {
             return NotFound();
         }
 
-        return Ok(landlord);
+        return Ok(landlord1);
     }
 
     [HttpPost]
@@ -50,23 +51,5 @@ public class LandlordController : ControllerBase
         return CreatedAtAction(nameof(Get), new { id = addedLandlord.LandlordId }, addedLandlord);
     }
 
-    [HttpPut("{id}")]
-    public async Task<IActionResult> Put(int id, [FromBody] Landlord landlord)
-    {
-        if (id != landlord.LandlordId)
-        {
-            return BadRequest();
-        }
-
-        var existingLandlord = await _landlordService.GetLandlordById(id);
-
-        if (existingLandlord == null)
-        {
-            return NotFound();
-        }
-
-        await _landlordService.UpdateLandlord(id, landlord);
-
-        return NoContent();
-    }
+  
 }
