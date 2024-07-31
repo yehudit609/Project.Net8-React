@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Entities;
 
@@ -22,6 +23,7 @@ public partial class Car
     public string ImageUrl { get; set; } = null!;
 
     public virtual Model? Model { get; set; }
-
+    //[JsonIgnore]
+    
     public virtual ICollection<Renting> Rentings { get; set; } = new List<Renting>();
 }
