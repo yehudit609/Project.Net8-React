@@ -22,19 +22,6 @@ public class CarController : ControllerBase
         return Ok(cars);
     }
 
-    [HttpGet("{id}")]
-    public async Task<IActionResult> Get(int id)
-    {
-        var car = await _carService.GetCarById(id);
-
-        if (car == null)
-        {
-            return NotFound();
-        }
-
-        return Ok(car);
-    }
-
     [HttpPost]
     public async Task<IActionResult> Post([FromBody] Car car)
     {
@@ -47,4 +34,18 @@ public class CarController : ControllerBase
 
         return CreatedAtAction(nameof(Get), new { id = addedCar.CarId }, addedCar);
     }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var deleted = await _carService.DeleteCar(id);
+
+        if (deleted == null)
+        {
+            return NotFound();
+        }
+
+        return NoContent();
+    }
+
 }
