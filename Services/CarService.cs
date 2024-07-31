@@ -27,12 +27,11 @@ namespace Services
             return await _carRepository.GetCars();
         }
 
-        public async Task<Car> GetCarById(int id)
-        {
-            // Implement the logic to get a car by ID using the repository
-            return await _carRepository.GetCarById(id);
-        }
+       
 
-        
+        public async Task<Car> DeleteCar(int id)
+        {
+            return await _carRepository.DeleteCar(id);
+        }
     }
 }

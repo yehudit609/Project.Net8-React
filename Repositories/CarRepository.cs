@@ -39,15 +39,28 @@ namespace Repositories
             return foundCars;
         }
 
-        public async Task<Car> GetCarById(int id)
+        public async Task<Car> DeleteCar(int id)
         {
-            var foundUser = await _CarRetalContext.Cars.FindAsync(id);
-            if (foundUser == null)
+            var foundCar = await _CarRetalContext.Cars.FindAsync(id);
+            if (foundCar == null)
                 return null;
             await _CarRetalContext.SaveChangesAsync();
-            return foundUser;
+            return foundCar;
         }
 
-        
+        //public async Task<bool> DeleteCar(int id)
+        //{
+        //    var carToDelete = await _CarRetalContext.Cars.FindAsync(id);
+        //    if (carToDelete == null)
+        //    {
+        //        return false; // Car not found
+        //    }
+
+        //    _CarRetalContext.Cars.Remove(carToDelete);
+        //    await _CarRetalContext.SaveChangesAsync();
+
+        //    return true; // Car successfully deleted
+        //}
+
     }
 }

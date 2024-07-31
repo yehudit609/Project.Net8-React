@@ -9,7 +9,8 @@ namespace Repositories
 {
     public class LandlordRepository : ILandlordRepository
     {
-        private CarRetalContext _picturesStoreContext;
+        private
+            CarRetalContext _picturesStoreContext;
 
         public LandlordRepository(CarRetalContext picturesStoreContext)
         {
