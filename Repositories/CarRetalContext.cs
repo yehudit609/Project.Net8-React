@@ -33,7 +33,7 @@ namespace Repositories;
     //            => optionsBuilder.UseSqlServer("Server=srv2\\pupils;Database=CAR_RETAL10;Trusted_Connection=True;TrustServerCertificate=True");
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer("Server=srv2\\pupils;Database=CAR_RETAL;Trusted_Connection=True;TrustServerCertificate=True", b => b.MigrationsAssembly("Repositories"));
+        optionsBuilder.UseSqlServer("Server=*******;Database=CAR_RETAL;Trusted_Connection=True;TrustServerCertificate=True", b => b.MigrationsAssembly("Repositories"));
     }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
