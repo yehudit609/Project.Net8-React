@@ -1,6 +1,4 @@
-﻿// ModelController.cs
-
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Entities;
@@ -49,6 +47,5 @@ public class ModelController : ControllerBase
 
         return CreatedAtAction(nameof(Get), new { id = addedModel.ModelId }, addedModel);
     }
-
   
 }
